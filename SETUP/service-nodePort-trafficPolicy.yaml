@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name:  whoami-nodeport-traffic
+  namespace: default
+spec:
+  selector:
+    app:  whoami
+  type:  NodePort
+  externalTrafficPolicy:  Local
+  ports:
+  - name:  http
+    port:  80
+    nodePort: 30002
+    protocol: TCP

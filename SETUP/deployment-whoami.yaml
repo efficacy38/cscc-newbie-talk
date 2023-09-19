@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whoami # Name of the deployment
+  namespace: default # Name of the namespace
+  labels:
+    app: whoami # Name of your application
+spec:
+  selector:
+    matchLabels:
+      app: whoami # Name of your application
+  replicas: 6 # Number of replicas
+  template:
+    metadata:
+      labels:
+        app: whoami # Name of your application
+    spec:
+      containers:
+      # Containers are the individual pieces of your application that you want
+      # to run.
+      - name: whoami # Name of the container
+        image: ghcr.io/traefik/whoami # The image you want to run
+        # resources:
+        #   limits:
+        #     memory: 512Mi
+        #     cpu: "1"
+        #   requests:
+        #     memory: 256Mi
+        #     cpu: "0.2"
+        ports:
+        # Ports are the ports that your application uses.
+        - containerPort: 80 # The port that your application uses
